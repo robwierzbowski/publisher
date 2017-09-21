@@ -29,8 +29,8 @@ const noCache = {'Cache-Control': 'no-cache'};
 
 gulp.task('publish', () => {
   const gzipTypes = '**/*.{html,css,js,svg,ico,json,txt}';
-  const cacheBustedTypes = '**/*.{css,js}';
-  const cachedTypes = '**/*.{gif,jpeg,jpg,png,svg,webp,ico,woff,woff2}';
+  const cacheBustedTypes = '**/*.{css,js,gif,jpeg,jpg,png,svg,webp,woff,woff2}';
+  const cachedTypes = '**/*.{ico}';
   const noCacheTypes = '**/*.{html,json,xml,txt}';
   const otherTypes = [
     '**/*',
