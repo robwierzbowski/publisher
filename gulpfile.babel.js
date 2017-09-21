@@ -11,6 +11,7 @@ if (!argv.source) {
 }
 
 const $ = gulpLoadPlugins();
+const force = !!argv.force;
 const prod = argv.prod;
 const base = path.resolve(__dirname, argv.source);
 const source = path.resolve(base, '**/*');
@@ -39,13 +40,17 @@ gulp.task('publish', () => {
     `!${noCacheTypes}`
   ];
 
-  let publisher = $.awspublish.create(awsSettings);
+  const publisher = $.awspublish.create(awsSettings);
+
+  const options = {
+    force: force,
+  }
 
   return gulp.src(source, {base: base})
   .pipe($.if(gzipTypes, $.awspublish.gzip()))
-  .pipe($.if(cacheBustedTypes, publisher.publish(farFuture)))
-  .pipe($.if(cachedTypes, publisher.publish(future)))
-  .pipe($.if(noCacheTypes, publisher.publish(noCache)))
-  .pipe($.if(otherTypes, publisher.publish()))
+  .pipe($.if(cacheBustedTypes, publisher.publish(farFuture, options)))
+  .pipe($.if(cachedTypes, publisher.publish(future, options)))
+  .pipe($.if(noCacheTypes, publisher.publish(noCache, options)))
+  .pipe($.if(otherTypes, publisher.publish(null, options)))
   .pipe($.awspublish.reporter());
 });

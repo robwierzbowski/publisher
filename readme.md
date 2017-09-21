@@ -14,6 +14,9 @@ Required. Path to the directory to be published.
 ##### `--prod`
 If set, publishes to `robwierzbowski.com`. Otherwise publishes to `dev.robwierzbowski.com`.
 
+##### `--force`
+If set, ignores cache and publishes all assets.
+
 ## TODO
 
 - [x] Update node version
