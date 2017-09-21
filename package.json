@@ -9,7 +9,7 @@
     "web": "robwierzbowski.com"
   },
   "private": true,
-  "devDependencies": {
+  "dependencies": {
     "babel-core": "^6.2.1",
     "babel-preset-env": "^1.6.0",
     "eslint": "^4.7.2",
