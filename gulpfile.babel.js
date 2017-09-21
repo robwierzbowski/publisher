@@ -1,16 +1,26 @@
+/*
+ Publishes to my personal site's s3 bucket.
+ Run `gulp publish`. Add flags:
+ --source [path]: path to the directory to be published.
+ --prod: if set, publishes to robwierzbowski.com. Otherwise publishes to
+    dev.robwierzbowski.com.
+*/
+
 'use strict';
 
+import path from 'path';
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import { argv } from 'yargs';
 
 const $ = gulpLoadPlugins();
+const prod = argv.prod;
+const base = path.resolve(__dirname, argv.source);
+const source = path.resolve(base, '**/*');
 
-// Publishes to dev.robwierzbowski.com
-// Use the --prod flag to publish to robwierzbowski.com
 const awsSettings = {
   params: {
-    Bucket: argv.prod ? 'robwierzbowski.com' : 'dev.robwierzbowski.com'
+    Bucket: prod ? 'robwierzbowski.com' : 'dev.robwierzbowski.com'
   },
   region: 'us-east-1'
 };
@@ -34,8 +44,7 @@ gulp.task('publish', () => {
 
   let publisher = $.awspublish.create(awsSettings);
 
-  // Switch src to arg
-  return gulp.src('dist/**/*', {base: 'dist'})
+  return gulp.src(source, {base: base})
   .pipe($.if(gzipTypes, $.awspublish.gzip()))
   .pipe($.if(cacheBustedTypes, publisher.publish(farFuture)))
   .pipe($.if(cachedTypes, publisher.publish(future)))
