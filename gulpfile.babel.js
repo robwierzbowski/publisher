@@ -13,6 +13,11 @@ import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import { argv } from 'yargs';
 
+if (!argv.source) {
+  console.log('Ya need a --source dir, buddy');
+  process.exit(1);
+}
+
 const $ = gulpLoadPlugins();
 const prod = argv.prod;
 const base = path.resolve(__dirname, argv.source);
