@@ -1,11 +1,3 @@
-/*
- Publishes to my personal site's s3 bucket.
- Run `gulp publish`. Add flags:
- --source [path]: path to the directory to be published.
- --prod: if set, publishes to robwierzbowski.com. Otherwise publishes to
-    dev.robwierzbowski.com.
-*/
-
 'use strict';
 
 import path from 'path';
