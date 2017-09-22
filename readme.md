@@ -27,6 +27,9 @@ Required. Path to the directory to be published.
 ##### `--bucket [STRING]`
 Required. Your s3 bucket to publish to.
 
+##### `--region [STRING]`
+Your s3 bucket region. Defaults to `us-east-1`.
+
 ##### `--force`
 If set, ignores cache and publishes all assets.
 

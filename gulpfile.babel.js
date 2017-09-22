@@ -16,6 +16,7 @@ if (!argv.bucket) {
 const bucket = argv.bucket;
 const force = !!argv.force;
 const sync = !!argv.sync;
+const region = argv.region || 'us-east-1';
 
 const $ = gulpLoadPlugins();
 const base = path.resolve(__dirname, argv.source);
@@ -25,7 +26,7 @@ const awsSettings = {
   params: {
     Bucket: bucket,
   },
-  region: 'us-east-1'
+  region: region,
 };
 
 const day = 86400;
