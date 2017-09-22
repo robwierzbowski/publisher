@@ -9,10 +9,11 @@ if (!argv.source) {
   console.log('Ya need a --source dir, buddy');
   process.exit(1);
 }
+const prod = argv.prod;
+const force = !!argv.force;
+const sync = !!argv.sync;
 
 const $ = gulpLoadPlugins();
-const force = !!argv.force;
-const prod = argv.prod;
 const base = path.resolve(__dirname, argv.source);
 const source = path.resolve(base, '**/*');
 
@@ -52,5 +53,6 @@ gulp.task('publish', () => {
   .pipe($.if(cachedTypes, publisher.publish(future, options)))
   .pipe($.if(noCacheTypes, publisher.publish(noCache, options)))
   .pipe($.if(otherTypes, publisher.publish(null, options)))
+  .pipe($.if(sync, publisher.sync()))
   .pipe($.awspublish.reporter());
 });

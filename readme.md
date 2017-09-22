@@ -17,6 +17,9 @@ If set, publishes to `robwierzbowski.com`. Otherwise publishes to `dev.robwierzb
 ##### `--force`
 If set, ignores cache and publishes all assets.
 
+##### `--sync`
+If set, deletes all files that aren't in the current deploy.
+
 ## TODO
 
 - [x] Update node version
