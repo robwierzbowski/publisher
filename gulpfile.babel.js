@@ -9,7 +9,13 @@ if (!argv.source) {
   console.log('Ya need a --source dir, buddy');
   process.exit(1);
 }
-const prod = argv.prod;
+
+if (!argv.bucket) {
+  console.log('Ya need a --bucket, buddy');
+  process.exit(1);
+}
+
+const bucket = argv.bucket;
 const force = !!argv.force;
 const sync = !!argv.sync;
 
@@ -19,7 +25,7 @@ const source = path.resolve(base, '**/*');
 
 const awsSettings = {
   params: {
-    Bucket: prod ? 'robwierzbowski.com' : 'dev.robwierzbowski.com'
+    Bucket: bucket,
   },
   region: 'us-east-1'
 };

@@ -8,11 +8,11 @@ Run `gulp publish [--flags]` to deploy.
 
 ### Flags
 
-##### `--source [path]`
+##### `--source [STRING]`
 Required. Path to the directory to be published.
 
-##### `--prod`
-If set, publishes to `robwierzbowski.com`. Otherwise publishes to `dev.robwierzbowski.com`.
+##### `--bucket [STRING]`
+Required. Your s3 bucket to publish to.
 
 ##### `--force`
 If set, ignores cache and publishes all assets.
