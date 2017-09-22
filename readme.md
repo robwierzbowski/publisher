@@ -42,3 +42,4 @@ If set, deletes all files that aren't in the current deploy.
 - [ ] Update eslint settings to my new fav, AirBnB with some alterations.
 - [ ] Configure eslint to recognize `import`.
 - [ ] Refactor into small node app, remove gulp.
+- [ ] Some tests, if the rest of this comes together well.
